@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="info.einverne.exercise100.MainActivity">
+
+    <info.einverne.exercise100.CustomView
+        android:id="@+id/customView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        app:CircleColor="#FFF"
+        app:exampleColor="#33b5e5"
+        app:exampleDimension="24sp"
+        app:exampleString="Text hint" />
+
+</RelativeLayout>
