@@ -20,7 +20,14 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * TODO: view to draw circle
+ * view to draw circle
+ *
+ * Views are all drawn on the same GUI thread which is also used for all user interaction.
+
+ So if you need to update GUI rapidly or if the rendering takes too much time and affects user experience then use SurfaceView.
+
+ SurfaceView can be drawn on by background theads but Views can't
+
  */
 public class CustomView extends View implements SensorEventListener{
 

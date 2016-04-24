@@ -10,3 +10,7 @@
 使用预览，因模拟器重力感应限制，真机测试才有效。
 
 ![gif](app.gif)
+
+widget
+
+![widget](widget.gif)

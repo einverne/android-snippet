@@ -15,8 +15,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity"
-            android:label="Preference"></activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="Preference">
+
+        </activity>
+        <activity android:name=".WidgetSettingsActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+
+        <receiver android:name=".MyAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="info.einverne.exercise100.UPDATE_WIDGET" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_app_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".UpdateWidgetService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="info.einverne.exercise100.UpdateWidgetService" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>
