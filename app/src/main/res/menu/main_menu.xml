@@ -5,4 +5,9 @@
         android:id="@+id/settings_id"
         android:title="@string/settings"
         android:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/data_activity"
+        android:title="Data Activity"
+        android:showAsAction="ifRoom" />
 </menu>
