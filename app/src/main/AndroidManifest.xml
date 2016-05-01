@@ -20,7 +20,7 @@
         <activity
             android:name=".SettingsActivity"
             android:label="Preference">
-            
+
         </activity>
         <activity android:name=".WidgetSettingsActivity">
             <intent-filter>
@@ -50,11 +50,12 @@
         </service>
 
         <activity android:name=".DataActivity">
-            
+
         </activity>
     </application>
-    
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
 
 </manifest>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
         android:id="@+id/settings_id"
         android:title="@string/settings"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/data_activity"
-        android:title="Data Activity"
-        android:showAsAction="ifRoom" />
+        android:title="@string/settings_data_activity"
+        app:showAsAction="ifRoom" />
 </menu>
