@@ -31,27 +31,6 @@ public class UpdateWidgetService extends Service {
         super.onDestroy();
     }
 
-
-
-    //    @Override
-//    public void onStart(Intent intent, int startId) {
-//        super.onStart(intent, startId);
-//
-//        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this.getApplicationContext());
-//
-//        int[] allwidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
-//
-//        for (int widgetId : allwidgetIds){
-//            int number = (new Random()).nextInt(100);
-//
-//            RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.my_app_widget);
-//
-//            remoteViews.setTextViewText(R.id.appwidget_text, "Random: "+number);
-//
-////            Intent clickIntent = new Intent(this.getApplicationContext(), )
-//        }
-//    }
-
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -59,10 +38,10 @@ public class UpdateWidgetService extends Service {
         return null;
     }
 
-    private class WidgetThread extends Thread{
+    private class WidgetThread extends Thread {
         @Override
         public void run() {
-            while(!isInterrupted()) { //非阻塞过程中通过判断中断标志来退出
+            while (!isInterrupted()) { //非阻塞过程中通过判断中断标志来退出
                 Intent intent = new Intent(MyAppWidget.ACTION_WIDGET_TEXT);
                 context.sendBroadcast(intent);
 

@@ -1,5 +1,6 @@
 package info.einverne.exercise100;
 
+import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -23,32 +25,32 @@ import java.util.Random;
 public class MyAppWidget extends AppWidgetProvider {
 
     /**
-     *起动时AppWidgetProvider的执行流程：
-     *第一步：onReceive()
+     * 起动时AppWidgetProvider的执行流程：
+     * 第一步：onReceive()
      * 接到广播事件：android.appwidget.action.APPWIDGET_ENABLED
-     *第二步：onEnabled()
-     *第三步：onReceive()
+     * 第二步：onEnabled()
+     * 第三步：onReceive()
      * 接到广播事件：android.appwidget.action.APPWIDGET_UPDATE
-     *第四步：onUpdate()
-     *
-     *被删除时AppWidgetProvider
-     *第一步：onReceive()
-     *  接到广播事件：android.appwidget.action.APPWIDGET_DELETED
-     *第二步：onDelete();
-     *第三步：onReceive()
-     *  接到广播事件：android.appwidget.action.APPWIDGET_DISABLED
-     *第四步：onDisabled()
-     *
+     * 第四步：onUpdate()
+     * <p/>
+     * 被删除时AppWidgetProvider
+     * 第一步：onReceive()
+     * 接到广播事件：android.appwidget.action.APPWIDGET_DELETED
+     * 第二步：onDelete();
+     * 第三步：onReceive()
+     * 接到广播事件：android.appwidget.action.APPWIDGET_DISABLED
+     * 第四步：onDisabled()
+     * <p/>
      * 要得到一个pendingIntent对象，使用方法类的静态方法 getActivity(Context, int, Intent, int),
      * getBroadcast(Context, int, Intent, int) ,  getService(Context, int, Intent, int)
      * 分别对应着Intent的3个行为，跳转到一个activity组件、打开一个广播组件和打开一个服务组件。
      * 参数有4个，比较重要的事第三个和第一个，其次是第四个和第二个。可以看到，要得到这个对象，
      * 必须传入一个Intent作为参数，必须有context作为参数。
-     *
+     * <p/>
      * pendingIntent是一种特殊的Intent。主要的区别在于Intent的执行立刻的，而 pendingIntent的执行不是立刻的。
      * pendingIntent执行的操作实质上是参数传进来的Intent的操作，但是使用 pendingIntent的目的在于
      * 它所包含的Intent的操作的执行是需要满足某些条件的。
-     *
+     * <p/>
      * 接受来自AppWidget的广播
      * 在AndroidMainfest.xml当中为AppWidgetProvider注册新的intent-filter
      */
@@ -63,7 +65,7 @@ public class MyAppWidget extends AppWidgetProvider {
     private static HashSet<Integer> widgetIds = new HashSet<>();
     private static Intent service_intent;
 
-    static void updateText(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
+    static void updateText(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         Log.d(TAG, "updateText");
         int number = new Random().nextInt(100);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
@@ -72,7 +74,7 @@ public class MyAppWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
-    static void updateImageBtn(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
+    static void updateImageBtn(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         Log.d(TAG, "updateImageBtn");
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
         // set onclick imagebutton       imagebtn open app
@@ -91,7 +93,7 @@ public class MyAppWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
-    static void updateUrl(Context context, AppWidgetManager appWidgetManager, int appWidgetId){
+    static void updateUrl(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
         // btn open url
         Intent openURL = new Intent(Intent.ACTION_VIEW, Uri.parse("http://einverne.github.io"));
@@ -103,10 +105,10 @@ public class MyAppWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
         SharedPreferences isconfig = context.getSharedPreferences(WidgetSettingsActivity.PREFS_NAME,
-                context.MODE_PRIVATE);
-        boolean b_isconfig = isconfig.getBoolean(""+appWidgetId, false);
-        if (b_isconfig == false)    return;         // 只有配置成功才开始更新
-        Log.d( TAG , "updateAppWidget");
+                Context.MODE_PRIVATE);
+        boolean b_isconfig = isconfig.getBoolean("" + appWidgetId, false);
+        if (!b_isconfig) return;         // 只有配置成功才开始更新
+        Log.d(TAG, "updateAppWidget");
 
         updateAppWidget(context, appWidgetManager, appWidgetId);
         updateImageBtn(context, appWidgetManager, appWidgetId);
@@ -121,7 +123,8 @@ public class MyAppWidget extends AppWidgetProvider {
 
     /**
      * 第一次添加widget时调用,这里可以开启Service
-     * @param context
+     *
+     * @param context context
      */
     @Override
     public void onEnabled(Context context) {
@@ -141,33 +144,35 @@ public class MyAppWidget extends AppWidgetProvider {
      * 这样 widget 就能进行必要的设置工作(如果需要的话) 。
      * 但是，如果定义了 widget 的 configure属性(即android:config，后面会介绍)，
      * 那么当用户首次添加 widget 时，onUpdate()不会被调用；之后更新 widget 时，onUpdate才会被调用。
-     * @param context
-     * @param appWidgetManager
-     * @param appWidgetIds
+     *
+     * @param context          context
+     * @param appWidgetManager appWidgetManager
+     * @param appWidgetIds     ids
      */
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        super.onUpdate(context,appWidgetManager,appWidgetIds);
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
         // There may be multiple widgets active, so update all of them
-        Log.d( TAG , "onUpdate widget added or widget updated");
+        Log.d(TAG, "onUpdate widget added or widget updated");
         for (int appWidgetId : appWidgetIds) {
-            widgetIds.add(Integer.valueOf(appWidgetId));
+            widgetIds.add(appWidgetId);
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
 
-        ComponentName thiswidget = new ComponentName(context, MyAppWidget.class);
-        int[] widgetIds = appWidgetManager.getAppWidgetIds(thiswidget);
+//        ComponentName thiswidget = new ComponentName(context, MyAppWidget.class);
+//        int[] widgetIds = appWidgetManager.getAppWidgetIds(thiswidget);
     }
 
     /**
      * 当 widget 被删除时被触发。
-     * @param context
-     * @param appWidgetIds
+     *
+     * @param context      context
+     * @param appWidgetIds ids
      */
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         super.onDeleted(context, appWidgetIds);
-        for (int appid : appWidgetIds){
+        for (int appid : appWidgetIds) {
             widgetIds.remove(appid);
         }
     }
@@ -175,44 +180,46 @@ public class MyAppWidget extends AppWidgetProvider {
 
     /**
      * 最后一个实例被删除时调用
-     * @param context
+     *
+     * @param context context
      */
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
         // Enter relevant functionality for when the last widget is disabled
-        Log.d(TAG,"onDisabled Last widget is deleted");
+        Log.d(TAG, "onDisabled Last widget is deleted");
         context.stopService(service_intent);
 
     }
 
     /**
      * 接收到任意广播时触发，并且会在上述的方法之前被调用
-     * @param context
-     * @param intent
+     *
+     * @param context context
+     * @param intent  intent
      */
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
 
-        Log.d(TAG, "action "+action);
-        if (action.equals(ACTION_WIDGET_TEXT)){
-            for (int id : widgetIds){
+        Log.d(TAG, "action " + action);
+        if (action.equals(ACTION_WIDGET_TEXT)) {
+            for (int id : widgetIds) {
                 updateText(context, AppWidgetManager.getInstance(context), id);
             }
         }
-        if(action.equals(ACTION_WIDGET_IMAGEBUTTON)){
+        if (action.equals(ACTION_WIDGET_IMAGEBUTTON)) {
             Log.d(TAG, "img button clicked");
 
             SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_CLICK_NUM, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            int click_num = sharedPreferences.getInt(PREFS_CLICK_NUM_KEY,0);
+            int click_num = sharedPreferences.getInt(PREFS_CLICK_NUM_KEY, 0);
             click_num++;
-            editor.putInt(PREFS_CLICK_NUM_KEY,click_num);
-            editor.commit();
+            editor.putInt(PREFS_CLICK_NUM_KEY, click_num);
+            editor.apply();
 
-            Toast.makeText(context, "Click: "+click_num+" times", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Click: " + click_num + " times", Toast.LENGTH_SHORT).show();
 
             //        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -238,6 +245,7 @@ public class MyAppWidget extends AppWidgetProvider {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
         Log.d(TAG, "onAppWidgetOptionsChanged");
@@ -251,12 +259,6 @@ public class MyAppWidget extends AppWidgetProvider {
         Log.d(TAG, max_width + " " + max_height);
 
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
-    }
-
-    protected PendingIntent getPendingSelfIntent(Context context, String action) {
-        Intent intent = new Intent(context, getClass());
-        intent.setAction(action);
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 }
 

@@ -4,18 +4,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.PointF;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Window;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     public final static String TAG = "EV_TAG";
 
@@ -23,18 +20,14 @@ public class MainActivity extends AppCompatActivity{
     public final static String KEY_COLOR_OF_CIRCLE = "colorOfCircle";
     public final static String KEY_OPERATION = "operation";
 
-    SharedPreferences pos_sharedPreferences;
-    SharedPreferences.Editor editor;
-
     private CustomView cv;
 
-    private String operation;
 
     @Override
     protected void onNewIntent(Intent intent) {
         Log.d(TAG, "on NewIntent");
         int taskId = getTaskId();
-        Log.d(TAG, "taskId "+taskId);
+        Log.d(TAG, "taskId " + taskId);
 
 
         super.onNewIntent(intent);
@@ -50,12 +43,12 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         int taskId = getTaskId();
-        Log.d(TAG, "taskId "+taskId);
+        Log.d(TAG, "taskId " + taskId);
 
-        pos_sharedPreferences = this.getSharedPreferences("position", MODE_PRIVATE);
-        editor = pos_sharedPreferences.edit();
+//        pos_sharedPreferences = this.getSharedPreferences("position", MODE_PRIVATE);
+//        editor = pos_sharedPreferences.edit();
 
-        cv = (CustomView)findViewById(R.id.customView);
+        cv = (CustomView) findViewById(R.id.customView);
 
         updateCircle();
 
@@ -64,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(TAG,"onRestart");
+        Log.d(TAG, "onRestart");
 
     }
 
@@ -77,15 +70,16 @@ public class MainActivity extends AppCompatActivity{
 
     protected void updateCircle() {
 
+        String operation;
 
         // read from preferences
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         String color_of_circle = settings.getString(KEY_COLOR_OF_CIRCLE, "1");
         int size_of_circle = settings.getInt(KEY_SIZE_OF_CIRCLE, 30);
-        operation = settings.getString(KEY_OPERATION,"1");
+        operation = settings.getString(KEY_OPERATION, "1");
 
         // change color
-        switch (color_of_circle){
+        switch (color_of_circle) {
             case "1":
                 cv.setmCircleColor(Color.WHITE);
                 break;
@@ -161,11 +155,12 @@ public class MainActivity extends AppCompatActivity{
      * 也就是说以下几种情况会触发onSaveInstanceState()：
      * (01) 用户通过"最近常用程序"切换到其他Activity。
      * (02) 在当前Activity启动并进入了另一个Activity。
-     (03) 当Activity在前端时，来电话并弹出了拨号界面。
-     (04) 当Activity在前端时，按HOME键返回主界面。
-     如果"用户在Activity界面按返回退出Activity" 或者 "通过finish()销毁掉该Activity"，
-     并不会触发onSaveInstanceState()。
-     * @param outState
+     * (03) 当Activity在前端时，来电话并弹出了拨号界面。
+     * (04) 当Activity在前端时，按HOME键返回主界面。
+     * 如果"用户在Activity界面按返回退出Activity" 或者 "通过finish()销毁掉该Activity"，
+     * 并不会触发onSaveInstanceState()。
+     *
+     * @param outState outState
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -176,7 +171,8 @@ public class MainActivity extends AppCompatActivity{
     /**
      * 只有当onSaveInstanceState()被调用，并且该Activity由于资源不足等原因被系统销毁的情况下；
      * 重新进入Activity时，onRestoreInstanceState()才会被调用！
-     * @param savedInstanceState
+     *
+     * @param savedInstanceState saved
      */
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {

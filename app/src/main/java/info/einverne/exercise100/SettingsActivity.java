@@ -1,21 +1,23 @@
 package info.einverne.exercise100;
 
+import android.annotation.TargetApi;
 import android.os.Build;
+import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.pavelsikun.seekbarpreference.SeekBarPreference;
 
+import java.util.Objects;
+
 import static android.view.View.generateViewId;
 
-public class SettingsActivity extends AppCompatActivity implements Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener{
+public class SettingsActivity extends AppCompatActivity implements Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity implements Preference.On
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT
         ));
-        if(Build.VERSION.SDK_INT > 16) frameLayout.setId(generateViewId());
+        if (Build.VERSION.SDK_INT > 16) frameLayout.setId(generateViewId());
         else //noinspection ResourceType
             frameLayout.setId(676442);
 
@@ -37,19 +39,16 @@ public class SettingsActivity extends AppCompatActivity implements Preference.On
                 new SettingsFragment()).commit();
 
 
-
-
     }
 
 
-    public static class SettingsFragment extends PreferenceFragment{
+    public static class SettingsFragment extends PreferenceFragment {
 
-        private String colorRes;
         private ListPreference colorOfCircle;
         private SeekBarPreference seekBarPreference;
 
 
-        public void onCreate(Bundle savedInstanceState){
+        public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preference);
         }
@@ -59,21 +58,22 @@ public class SettingsActivity extends AppCompatActivity implements Preference.On
             super.onViewCreated(view, savedInstanceState);
 
 
-            colorOfCircle = (ListPreference)findPreference("colorOfCircle");
-            seekBarPreference = (SeekBarPreference)findPreference("sizeOfCircle");
+            colorOfCircle = (ListPreference) findPreference("colorOfCircle");
+            seekBarPreference = (SeekBarPreference) findPreference("sizeOfCircle");
 
 
         }
     }
 
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 
         Log.d("EV_TAG", preference.getKey());
 
-        if (preference.getKey() == CustomView.KEY_SIZE_OF_CIRCLE){
-
+        if (Objects.equals(preference.getKey(), CustomView.KEY_SIZE_OF_CIRCLE)) {
+            Log.d("TAG", "change size of circle");
         }
 
         //如果返回false表示不允许被改变

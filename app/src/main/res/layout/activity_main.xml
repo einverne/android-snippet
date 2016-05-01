@@ -13,7 +13,9 @@
         android:background="#000"
         android:paddingBottom="0dp"
         android:paddingLeft="0dp"
+        android:paddingRight="0dp"
         app:CircleColor="#FFF"
+        app:CircleRadius="30"
         app:exampleColor="#33b5e5"
         app:exampleDimension="24sp"
         app:exampleString="Text hint" />

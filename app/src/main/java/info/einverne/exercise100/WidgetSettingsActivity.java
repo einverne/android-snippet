@@ -2,20 +2,17 @@ package info.einverne.exercise100;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RemoteViews;
 
-public class WidgetSettingsActivity extends AppCompatActivity implements View.OnClickListener{
+public class WidgetSettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String PREFS_NAME = "WidgetSettingsActivity";
 
@@ -24,6 +21,7 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
     private ImageButton on_btn;
     private AppWidgetManager appWidgetManager;
     private RemoteViews views;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,18 +34,18 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
 
         setContentView(R.layout.activity_widget_settings);
 
-        off_btn = (ImageButton)findViewById(R.id.off_button);
-        on_btn = (ImageButton)findViewById(R.id.on_button);
+        off_btn = (ImageButton) findViewById(R.id.off_button);
+        on_btn = (ImageButton) findViewById(R.id.on_button);
         off_btn.setOnClickListener(this);
         on_btn.setOnClickListener(this);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if (extras != null){
+        if (extras != null) {
             appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID,
                     AppWidgetManager.INVALID_APPWIDGET_ID);
         }
-        if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID){
+        if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
             return;
         }
@@ -60,20 +58,21 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
 
     /**
      * 保存配置
-     * @param context context
+     *
+     * @param context     context
      * @param appWidgetId app id
-     * @param isconfig 是否配置
+     * @param isconfig    是否配置
      */
-    static void savePref(Context context, int appWidgetId, boolean isconfig){
+    static void savePref(Context context, int appWidgetId, boolean isconfig) {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
-        prefs.putBoolean(""+appWidgetId, isconfig);
-        prefs.commit();
+        prefs.putBoolean("" + appWidgetId, isconfig);
+        prefs.apply();
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
+        switch (id) {
             case R.id.off_button:
 
                 views.setImageViewResource(R.id.widget_imageButton, R.drawable.off_button);
@@ -104,10 +103,9 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
         PendingIntent urlPendingIntent = PendingIntent.getActivity(this, 1, openURL, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_btn, urlPendingIntent);
 
-
         Intent widgetIntent = new Intent();
         widgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        setResult(RESULT_OK,widgetIntent);
+        setResult(RESULT_OK, widgetIntent);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
         savePref(this, appWidgetId, true);          // 配置成功
