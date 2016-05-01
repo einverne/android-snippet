@@ -155,8 +155,34 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    /**
+     * onSaveInstanceState()是用于保存数据，onRestoreInstanceState()用于还原数据。
+     * 当该Activity会完全隐藏，但是又没有被销毁时，会触发onSaveInstanceState()。
+     * 也就是说以下几种情况会触发onSaveInstanceState()：
+     * (01) 用户通过"最近常用程序"切换到其他Activity。
+     * (02) 在当前Activity启动并进入了另一个Activity。
+     (03) 当Activity在前端时，来电话并弹出了拨号界面。
+     (04) 当Activity在前端时，按HOME键返回主界面。
+     如果"用户在Activity界面按返回退出Activity" 或者 "通过finish()销毁掉该Activity"，
+     并不会触发onSaveInstanceState()。
+     * @param outState
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+    }
 
+    /**
+     * 只有当onSaveInstanceState()被调用，并且该Activity由于资源不足等原因被系统销毁的情况下；
+     * 重新进入Activity时，onRestoreInstanceState()才会被调用！
+     * @param savedInstanceState
+     */
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
