@@ -10,3 +10,28 @@
     android:widgetCategory="home_screen|keyguard"
     android:configure="info.einverne.exercise100.WidgetSettingsActivity">
 </appwidget-provider>
+<!--
+
+minHeight minWidth 计算公式:
+
+1 cell = 40dp
+2 cells = 110dp
+3 cells = 180dp
+
+
+n cells = (n*70)-30    n is an integer
+
+Android:updatePeriodMillis指示了更新间隔,86400000为24小时，也就是一天一次. 最小不能低于30min.
+android:initialLayout就是指向的Widget布局
+android:widgetCategory指示该Widget可以用作桌面和锁屏,指定了 widget 能显示的地方：
+能否显示在 home Screen 或 lock screen 或 两者都可以。
+它的取值包括：”home_screen” 和 “keyguard”。Android 4.2 引入。
+android:previewImage指定预览图，该预览图在用户选择 widget 时出现，
+如果没有提供，则会显示应用的图标。该字段对应在 AndroidManifest.xml 中 receiver 的 android:previewImage 字段。
+由 Android 3.0 引入。
+android:configure可选属性，定义了 widget 的配置 Activity。如果定义了该项，那么当 widget 创建时，
+会自动启动该 Activity。
+initialKeyguardLayout指向 widget 位于 lockscreen 中的布局资源文件。Android 4.2 引入。
+
+
+-->

@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +17,7 @@ import android.widget.RemoteViews;
 
 public class WidgetSettingsActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String PREFS_NAME = "WidgetSettingsActivity";
-    private static final String PREF_PREFIX_KEY = "prefix_";
+    public static final String PREFS_NAME = "WidgetSettingsActivity";
 
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private ImageButton off_btn;
@@ -29,7 +29,8 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
 
         /**
-         * In onCreate() we have to ensure that if the user presses BACK or cancelled the activity, then we should not add app widget.
+         * In onCreate() we have to ensure that if the user presses BACK or cancelled the activity,
+         * then we should not add app widget.
          */
         setResult(RESULT_CANCELED);
 
@@ -57,9 +58,15 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
 
     }
 
-    static void savePref(Context context, int appWidgetId, int res_id){
+    /**
+     * 保存配置
+     * @param context context
+     * @param appWidgetId app id
+     * @param isconfig 是否配置
+     */
+    static void savePref(Context context, int appWidgetId, boolean isconfig){
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
-        prefs.putInt(PREF_PREFIX_KEY+appWidgetId, res_id);
+        prefs.putBoolean(""+appWidgetId, isconfig);
         prefs.commit();
     }
 
@@ -79,11 +86,23 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
 
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        // set onclick imagebutton       imagebtn open app
+//        Intent intent = new Intent(this, MainActivity.class);
+//        intent.setAction(MyAppWidget.ACTION_WIDGET_IMAGEBUTTON);
+//        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+//        intent.putExtra("click",1);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+//        views.setOnClickPendingIntent(R.id.widget_imageButton, pendingIntent);
+        Intent intent = new Intent(this, MyAppWidget.class);
+        intent.setAction(MyAppWidget.ACTION_WIDGET_IMAGEBUTTON);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_imageButton, pendingIntent);
+
+
+        // btn open url
+        Intent openURL = new Intent(Intent.ACTION_VIEW, Uri.parse("http://einverne.github.io"));
+        PendingIntent urlPendingIntent = PendingIntent.getActivity(this, 1, openURL, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setOnClickPendingIntent(R.id.widget_btn, urlPendingIntent);
 
 
         Intent widgetIntent = new Intent();
@@ -91,6 +110,7 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
         setResult(RESULT_OK,widgetIntent);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
+        savePref(this, appWidgetId, true);          // 配置成功
         finish();
 
     }

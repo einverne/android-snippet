@@ -64,7 +64,7 @@ public class CustomView extends View implements SensorEventListener{
     private int paddingRight;
     private int paddingTop;
     private int paddingBottom;
-    public final static String TAG = "EV_TAG";
+    public final static String TAG = "EV_VIEW_TAG";
 
     public CustomView(Context context) {
         super(context);
@@ -85,6 +85,7 @@ public class CustomView extends View implements SensorEventListener{
     }
 
     private void init(AttributeSet attrs, int defStyle) {
+        Log.d(TAG, "init");
         // Load attributes
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.CustomView, defStyle, 0);
@@ -154,7 +155,6 @@ public class CustomView extends View implements SensorEventListener{
 
         mCirclePosition.x = pos_pref.getFloat("x",40);
         mCirclePosition.y = pos_pref.getFloat("y",40);
-        Log.d(TAG, "x and y" + mCirclePosition.x + mCirclePosition.y);
 
         sm = (SensorManager) context_.getSystemService(Context.SENSOR_SERVICE);
         gravitySensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -164,26 +164,74 @@ public class CustomView extends View implements SensorEventListener{
         invalidateTextPaintAndMeasurements();
     }
 
+    /**
+     * View默认为可见的，不是默认值时先调用onVisibilityChanged()，但是此时该View的尺寸、位置等信息都不知道。
+     * 这个函数在构造函数之前被调用
+     * View 生命周期：http://www.jianshu.com/p/08e6dab7886e
+     * @param changedView
+     * @param visibility
+     */
+    @Override
+    protected void onVisibilityChanged(View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+        Log.d(TAG, "onVisibilityChanged");
+    }
+
+    /**
+     * 从XMl文件中inflate完成
+     */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        Log.d(TAG, "onFinishInflate");
+    }
+
+    /**
+     * 附着窗口时触发
+     */
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Log.d(TAG, "onAttachedToWindow");
+    }
+
+    /**
+     * 确定所有子元素的大小
+     * @param widthMeasureSpec
+     * @param heightMeasureSpec
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+        Log.d(TAG, "onMeasure");
     }
 
+    /**
+     * 当View分配所有的子元素的大小和位置时触发
+     * @param changed
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     */
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        Log.d(TAG, "onLayout");
         paddingLeft = getPaddingLeft();
         paddingTop = getPaddingTop();
         paddingRight = getPaddingRight();
         paddingBottom = getPaddingBottom();
         contentWidth = getWidth() - paddingLeft - paddingRight;
         contentHeight = getHeight() - paddingTop - paddingBottom;
-        Log.d(TAG, "contentWidth: "+contentWidth);
-        Log.d(TAG, "contentHeight: "+contentHeight);
+//        Log.d(TAG, "contentWidth: "+contentWidth);
+//        Log.d(TAG, "contentHeight: "+contentHeight);
 
     }
 
+    /**
+     * 当view离开附着的窗口时触发
+     */
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
@@ -244,6 +292,11 @@ public class CustomView extends View implements SensorEventListener{
         }
     }
 
+    /**
+     * 触屏事件
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (operation.equals("1")) {           // 如果重力不处理

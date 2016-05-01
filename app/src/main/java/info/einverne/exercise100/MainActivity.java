@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -29,11 +31,26 @@ public class MainActivity extends AppCompatActivity{
     private String operation;
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        Log.d(TAG, "on NewIntent");
+        int taskId = getTaskId();
+        Log.d(TAG, "taskId "+taskId);
+
+
+        super.onNewIntent(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
+//        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+//        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        Log.d(TAG, "onCreate");
+        int taskId = getTaskId();
+        Log.d(TAG, "taskId "+taskId);
 
         pos_sharedPreferences = this.getSharedPreferences("position", MODE_PRIVATE);
         editor = pos_sharedPreferences.edit();
@@ -41,6 +58,13 @@ public class MainActivity extends AppCompatActivity{
         cv = (CustomView)findViewById(R.id.customView);
 
         updateCircle();
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG,"onRestart");
 
     }
 
@@ -131,14 +155,7 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG,"onRestart");
 
-        //cv.setmCirclePosition(cv.getmCirclePosition());
-
-    }
 
 
     @Override

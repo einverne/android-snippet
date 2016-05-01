@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +31,8 @@
         <receiver android:name=".MyAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="info.einverne.exercise100.UPDATE_WIDGET" />
+                <action android:name="info.einverne.exercise100.ACTION_WIDGET_TEXT" />
+                <action android:name="info.einverne.exercise100.ACTION_WIDGET_IMAGEBUTTON" />
             </intent-filter>
 
             <meta-data

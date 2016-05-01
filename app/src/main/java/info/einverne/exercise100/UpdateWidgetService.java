@@ -1,13 +1,9 @@
 package info.einverne.exercise100;
 
 import android.app.Service;
-import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.RemoteViews;
-
-import java.util.Random;
 
 public class UpdateWidgetService extends Service {
 
@@ -28,7 +24,16 @@ public class UpdateWidgetService extends Service {
         super.onCreate();
     }
 
-//    @Override
+    @Override
+    public void onDestroy() {
+        widgetThread.interrupt();
+
+        super.onDestroy();
+    }
+
+
+
+    //    @Override
 //    public void onStart(Intent intent, int startId) {
 //        super.onStart(intent, startId);
 //
@@ -57,15 +62,16 @@ public class UpdateWidgetService extends Service {
     private class WidgetThread extends Thread{
         @Override
         public void run() {
-            try {
-                while(true){
-                    Intent intent = new Intent(MyAppWidget.UPDATE_WIDGET);
-                    context.sendBroadcast(intent);
+            while(!isInterrupted()) { //非阻塞过程中通过判断中断标志来退出
+                Intent intent = new Intent(MyAppWidget.ACTION_WIDGET_TEXT);
+                context.sendBroadcast(intent);
 
-                    sleep(UPDATE_TIME);
+                try {
+                    sleep(UPDATE_TIME);//阻塞过程捕获中断异常来退出
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;//捕获到异常之后，执行break跳出循环。
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
