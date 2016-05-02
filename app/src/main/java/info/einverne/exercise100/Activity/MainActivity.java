@@ -203,9 +203,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentData = new Intent(MainActivity.this, DataActivity.class);
                 startActivity(intentData);
                 return true;
-            case R.id.textview_activity:
-                Intent intentTextView = new Intent(MainActivity.this, TextViewTestActivity.class);
-                startActivity(intentTextView);
+            case R.id.demo_activity:
+                Intent intentDemo = new Intent(MainActivity.this, DemoActivity.class);
+                startActivity(intentDemo);
             default:
                 return super.onOptionsItemSelected(item);
         }
