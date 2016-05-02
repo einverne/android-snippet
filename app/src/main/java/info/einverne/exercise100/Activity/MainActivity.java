@@ -1,4 +1,4 @@
-package info.einverne.exercise100;
+package info.einverne.exercise100.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import info.einverne.exercise100.CustomView;
+import info.einverne.exercise100.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -200,6 +203,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentData = new Intent(MainActivity.this, DataActivity.class);
                 startActivity(intentData);
                 return true;
+            case R.id.textview_activity:
+                Intent intentTextView = new Intent(MainActivity.this, TextViewTestActivity.class);
+                startActivity(intentTextView);
             default:
                 return super.onOptionsItemSelected(item);
         }

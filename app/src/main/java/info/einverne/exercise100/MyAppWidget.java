@@ -19,6 +19,9 @@ import android.widget.Toast;
 import java.util.HashSet;
 import java.util.Random;
 
+import info.einverne.exercise100.Activity.MainActivity;
+import info.einverne.exercise100.Activity.WidgetSettingsActivity;
+
 /**
  * Implementation of App Widget functionality.
  */

@@ -1,4 +1,4 @@
-package info.einverne.exercise100;
+package info.einverne.exercise100.Activity;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -11,6 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RemoteViews;
+
+import info.einverne.exercise100.MyAppWidget;
+import info.einverne.exercise100.R;
 
 public class WidgetSettingsActivity extends AppCompatActivity implements View.OnClickListener {
 

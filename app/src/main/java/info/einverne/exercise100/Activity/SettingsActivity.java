@@ -1,4 +1,4 @@
-package info.einverne.exercise100;
+package info.einverne.exercise100.Activity;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -14,6 +14,9 @@ import android.widget.FrameLayout;
 import com.pavelsikun.seekbarpreference.SeekBarPreference;
 
 import java.util.Objects;
+
+import info.einverne.exercise100.CustomView;
+import info.einverne.exercise100.R;
 
 import static android.view.View.generateViewId;
 

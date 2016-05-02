@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="info.einverne.exercise100.Activity.TextViewTestActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/marquee"
+        android:id="@+id/textViewMarquee"
+        android:singleLine="true"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
+<!--
+(01) android:singleLine="true" 是必须的。否则，一行显示不了的话；会多行显示。就没有跑马灯效果了！
+(02) android:ellipsize="marquee" 是指定一行内容显示不下的情况下，使用跑马灯效果。
+表达式	说明
+android:ellipsize="start"	省略号在开头
+android:ellipsize="middle"	省略号在中间
+android:ellipsize="end"	省略号在结尾
+android:ellipsize="marquee"	跑马灯显示
+(03) android:marqueeRepeatLimit="marquee_forever" 在 android:ellipsize="marquee" 情况下使用，跑马灯无限循环。当然，这里的"marquee_forever"可以是整数，表示循环次数。
+(04) android:focusableInTouchMode="true"和 android:focusable="true" 是为了让该TextView获取焦点。
+注意：
+1. 注意当TextView获取焦点，才能显示跑马灯效果。
+2. 若没有添加android:focusableInTouchMode="true"和 android:focusable="true"，而该TextView所属的layout中又有EditText或者ListView的话，则不会显示跑马灯效果。
+3. 此外，不能有多个TextView同时跑马灯。同一时间，只有一个TextView能显示跑马灯效果！
+-->

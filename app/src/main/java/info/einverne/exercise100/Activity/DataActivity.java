@@ -1,4 +1,4 @@
-package info.einverne.exercise100;
+package info.einverne.exercise100.Activity;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+
+import info.einverne.exercise100.R;
+import info.einverne.exercise100.SimpleContact;
+import info.einverne.exercise100.SimpleContactDbHelper;
 
 public class DataActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,6 +51,8 @@ public class DataActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_data);
 
         editText = (EditText) findViewById(R.id.editText);
+        editText.addTextChangedListener(new MyTextWatcher());
+
         writeBtn = (Button) findViewById(R.id.button_write);
         readBtn = (Button) findViewById(R.id.button_read);
         cacheBtn = (Button) findViewById(R.id.button_cache);
@@ -54,6 +61,7 @@ public class DataActivity extends AppCompatActivity implements View.OnClickListe
         readDb = (Button) findViewById(R.id.read_db);
 
         textView = (TextView) findViewById(R.id.textView);
+
         writeBtn.setOnClickListener(this);
         readBtn.setOnClickListener(this);
         cacheBtn.setOnClickListener(this);
@@ -91,6 +99,11 @@ public class DataActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.button_read:
+                File file = new File(this.getFilesDir(), FILENAME);
+                if ( !file.exists() ) {
+                    Toast.makeText(this, FILENAME+" not exist.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 try {
                     FileInputStream inputStream = openFileInput(FILENAME);
                     if (inputStream != null) {
@@ -110,7 +123,12 @@ public class DataActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.button_delete:
-                deleteFile(FILENAME);
+                file = new File(this.getFilesDir(), FILENAME);
+                if (file.exists()) {
+                    deleteFile(FILENAME);
+                }else {
+                    Toast.makeText(this, FILENAME+" not exist.", Toast.LENGTH_SHORT).show();
+                }
 
                 /**
                  * Java API
@@ -119,7 +137,7 @@ public class DataActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_cache:
                 try {
-                    File file = File.createTempFile("tempfile", null, getCacheDir());
+                    file = File.createTempFile("tempfile", null, getCacheDir());
                     FileOutputStream outStream = new FileOutputStream(file);
                     outStream.write(editText.getText().toString().getBytes());
                     outStream.close();
@@ -181,5 +199,44 @@ public class DataActivity extends AppCompatActivity implements View.OnClickListe
         }
         cursor.close();
         textView.setText(ret);
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+
+        /**
+         * Text 改变之前回调, s中从start开始的count个字符即将被after个字符替换
+         * @param s 改变之前 Editbox 中的字符
+         * @param start 从 start 之后 从0开始
+         * @param count 会改变的字符长度，插入时为0，修改时为修改的长度
+         * @param after 将被替换的字符长度
+         */
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            Log.d(TAG, "beforeTextChanged " + s + " start: "+ start + " count: " + count
+            + " after: " + after);
+
+        }
+
+        /**
+         * 内容改变的时候回调, s中从start开始的before个字符刚刚被count个字符替换
+         * @param s 改变之后的字符
+         * @param start 改变之前的字符长度
+         * @param before 改变时，从 start 开始 before 个字符被修改
+         * @param count 被替换的字符长度
+         */
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            Log.d(TAG, "onTextChanged " + s + "\nstart: "+ start +"\nbefore: "+ before+ "\ncount: " + count);
+
+        }
+
+        /**
+         * 内容改变之后回调
+         * @param s 内容改变之后的字符串
+         */
+        @Override
+        public void afterTextChanged(Editable s) {
+            Log.d(TAG, "afterTextChanged "+s.toString());
+        }
     }
 }
