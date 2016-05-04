@@ -65,6 +65,9 @@ public class DemoActivity extends AppCompatActivity {
                     intent = new Intent(DemoActivity.this, TextViewTestActivity.class);
                     startActivity(intent);
                     break;
+                case "BasicActivity":
+                    intent = new Intent(DemoActivity.this, BasicActivity.class);
+                    startActivity(intent);
                 default:
                     break;
             }
@@ -80,6 +83,10 @@ public class DemoActivity extends AppCompatActivity {
         map = new HashMap<>();
         map.put("name", "TextView Test");
         map.put("activity", "TextViewTestActivity");
+        data.add(map);
+        map = new HashMap<>();
+        map.put("name", "Basic Control Test");
+        map.put("activity", "BasicActivity");
         data.add(map);
 
         return data;
