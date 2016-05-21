@@ -68,6 +68,9 @@ public class DemoActivity extends AppCompatActivity {
                 case "BasicActivity":
                     intent = new Intent(DemoActivity.this, BasicActivity.class);
                     startActivity(intent);
+                case "ChangeThemeActivity":
+                    intent = new Intent(DemoActivity.this, ChangeThemeActivity.class);
+                    startActivity(intent);
                 default:
                     break;
             }
@@ -87,6 +90,11 @@ public class DemoActivity extends AppCompatActivity {
         map = new HashMap<>();
         map.put("name", "Basic Control Test");
         map.put("activity", "BasicActivity");
+        data.add(map);
+        // 改变app主题
+        map = new HashMap<>();
+        map.put("name", "Change Theme");
+        map.put("activity", "ChangeThemeActivity");
         data.add(map);
 
         return data;
