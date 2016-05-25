@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    // For faster builds, increase the maximum heap size for the Gradle daemon to more than 2048 MB.
+    // 修复build时错误
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
     lintOptions {
         abortOnError false;
     }
