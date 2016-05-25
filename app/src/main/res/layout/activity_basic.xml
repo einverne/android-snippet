@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="info.einverne.exercise100.Activity.BasicActivity">
+    tools:context="info.einverne.exercise100.activity.BasicActivity">
 
     <ScrollView
         android:layout_width="match_parent"

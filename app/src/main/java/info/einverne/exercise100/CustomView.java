@@ -37,24 +37,24 @@ public class CustomView extends View implements SensorEventListener {
     public final static String KEY_OPERATION = "operation";
 
 
-    private String mHintString;
-    private int mExampleColor = Color.RED;
-    private float mExampleDimension = 0;
-    private Drawable mExampleDrawable;
+    private String hintString;
+    private int exampleColor = Color.RED;
+    private float exampleDimension = 0;
+    private Drawable exampleDrawable;
 
-    private TextPaint mTextPaint;
-    private float mTextWidth;
-    private float mTextHeight;
+    private TextPaint textPaint;
+    private float textWidth;
+    private float textHeight;
 
     // circle related attr
-    private Paint mPaint;
-    private PointF mCirclePosition = new PointF(40, 40);             // Circle position
-    private float mRadius = 30;                                     // Circle radisu
-    private int mCircleColor = Color.WHITE;     // Circle color
+    private Paint paint;
+    private PointF circlePosition = new PointF(40, 40);             // Circle position
+    private float radius = 30;                                     // Circle radisu
+    private int circleColor = Color.WHITE;     // Circle color
 
     private String operation;                   // operation way to move Circle
 
-    private Context context_;
+    private Context context;
     private SensorManager sm;
 
     private int contentWidth;                   // content Width of View
@@ -65,19 +65,19 @@ public class CustomView extends View implements SensorEventListener {
 
     public CustomView(Context context) {
         super(context);
-        context_ = context;
+        this.context = context;
         init(null, 0);
     }
 
     public CustomView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        context_ = context;
+        this.context = context;
         init(attrs, 0);
     }
 
     public CustomView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        context_ = context;
+        this.context = context;
         init(attrs, defStyle);
     }
 
@@ -87,28 +87,28 @@ public class CustomView extends View implements SensorEventListener {
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.CustomView, defStyle, 0);
 
-        mHintString = a.getString(
+        hintString = a.getString(
                 R.styleable.CustomView_exampleString);
-        mExampleColor = a.getColor(
+        exampleColor = a.getColor(
                 R.styleable.CustomView_exampleColor,
-                mExampleColor);
+                exampleColor);
 
-        mCircleColor = a.getColor(
+        circleColor = a.getColor(
                 R.styleable.CustomView_CircleColor,
-                mCircleColor
+                circleColor
         );
 
         // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
         // values that should fall on pixel boundaries.
-        mExampleDimension = a.getDimension(
+        exampleDimension = a.getDimension(
                 R.styleable.CustomView_exampleDimension,
-                mExampleDimension);
+                exampleDimension);
 
         if (a.hasValue(R.styleable.CustomView_exampleDrawable)) {
-            mExampleDrawable = a.getDrawable(
+            exampleDrawable = a.getDrawable(
                     R.styleable.CustomView_exampleDrawable);
-            if (mExampleDrawable != null) {
-                mExampleDrawable.setCallback(this);
+            if (exampleDrawable != null) {
+                exampleDrawable.setCallback(this);
             }
         }
 
@@ -116,46 +116,46 @@ public class CustomView extends View implements SensorEventListener {
 
 
         // Set up a default TextPaint object
-        mTextPaint = new TextPaint();
-        mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setTextAlign(Paint.Align.LEFT);
+        textPaint = new TextPaint();
+        textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setTextAlign(Paint.Align.LEFT);
 
         // Set up Paint()
 
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(mCircleColor);
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(circleColor);
 
 
         // read from preferences settings
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context_);
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
         String color_of_circle = settings.getString(KEY_COLOR_OF_CIRCLE, "1");
         int size_of_circle = settings.getInt(KEY_SIZE_OF_CIRCLE, 30);
         operation = settings.getString(KEY_OPERATION, "1");
 
         switch (color_of_circle) {
             case "1":
-                mCircleColor = Color.WHITE;
+                circleColor = Color.WHITE;
                 break;
             case "2":
-                mCircleColor = (Color.RED);
+                circleColor = (Color.RED);
                 break;
             case "3":
-                mCircleColor = (Color.BLUE);
+                circleColor = (Color.BLUE);
                 break;
             case "4":
-                mCircleColor = (Color.YELLOW);
+                circleColor = (Color.YELLOW);
                 break;
             default:
-                mCircleColor = (Color.WHITE);
+                circleColor = (Color.WHITE);
         }
-        mRadius = size_of_circle;
+        radius = size_of_circle;
 
-        SharedPreferences pos_pref = context_.getSharedPreferences("position", Context.MODE_PRIVATE);
+        SharedPreferences pos_pref = context.getSharedPreferences("position", Context.MODE_PRIVATE);
 
-        mCirclePosition.x = pos_pref.getFloat("x", 40);
-        mCirclePosition.y = pos_pref.getFloat("y", 40);
+        circlePosition.x = pos_pref.getFloat("x", 40);
+        circlePosition.y = pos_pref.getFloat("y", 40);
 
-        sm = (SensorManager) context_.getSystemService(Context.SENSOR_SERVICE);
+        sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         Sensor gravitySensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_NORMAL);
 
@@ -241,23 +241,23 @@ public class CustomView extends View implements SensorEventListener {
 
         SharedPreferences pos_sharedPreferences;
         SharedPreferences.Editor editor;
-        pos_sharedPreferences = context_.getSharedPreferences("position", Context.MODE_PRIVATE);
+        pos_sharedPreferences = context.getSharedPreferences("position", Context.MODE_PRIVATE);
         editor = pos_sharedPreferences.edit();
 
 
-        editor.putFloat("x", mCirclePosition.x);
-        editor.putFloat("y", mCirclePosition.y);
+        editor.putFloat("x", circlePosition.x);
+        editor.putFloat("y", circlePosition.y);
         editor.apply();
 
     }
 
     private void invalidateTextPaintAndMeasurements() {
-        mTextPaint.setTextSize(mExampleDimension);
-        mTextPaint.setColor(mExampleColor);
-        mTextWidth = mTextPaint.measureText(mHintString);
+        textPaint.setTextSize(exampleDimension);
+        textPaint.setColor(exampleColor);
+        textWidth = textPaint.measureText(hintString);
 
-        Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
-        mTextHeight = fontMetrics.bottom;
+        Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+        textHeight = fontMetrics.bottom;
     }
 
     @Override
@@ -265,32 +265,32 @@ public class CustomView extends View implements SensorEventListener {
         super.onDraw(canvas);
 
         // Draw the text.
-        canvas.drawText(mHintString,
-                paddingLeft + (contentWidth - mTextWidth) / 2,
-                paddingTop + mTextHeight * 4,
-                mTextPaint);
+        canvas.drawText(hintString,
+                paddingLeft + (contentWidth - textWidth) / 2,
+                paddingTop + textHeight * 4,
+                textPaint);
 
-        float x = mCirclePosition.x;
-        float y = mCirclePosition.y;
-        if (x - mRadius <= 0) {
-            mCirclePosition.x = mRadius;
-        } else if (x + mRadius > contentWidth) {
-            mCirclePosition.x = contentWidth - mRadius;
+        float x = circlePosition.x;
+        float y = circlePosition.y;
+        if (x - radius <= 0) {
+            circlePosition.x = radius;
+        } else if (x + radius > contentWidth) {
+            circlePosition.x = contentWidth - radius;
         }
-        if (y - mRadius <= 0) {
-            mCirclePosition.y = mRadius;
-        } else if (y + mRadius > contentHeight) {
-            mCirclePosition.y = contentHeight - mRadius;
+        if (y - radius <= 0) {
+            circlePosition.y = radius;
+        } else if (y + radius > contentHeight) {
+            circlePosition.y = contentHeight - radius;
         }
 
-        mPaint.setColor(mCircleColor);
-        canvas.drawCircle(mCirclePosition.x, mCirclePosition.y, mRadius, mPaint);
+        paint.setColor(circleColor);
+        canvas.drawCircle(circlePosition.x, circlePosition.y, radius, paint);
 
         // Draw the example drawable on top of the text.
-        if (mExampleDrawable != null) {
-            mExampleDrawable.setBounds(paddingLeft, paddingTop,
+        if (exampleDrawable != null) {
+            exampleDrawable.setBounds(paddingLeft, paddingTop,
                     paddingLeft + contentWidth, paddingTop + contentHeight);
-            mExampleDrawable.draw(canvas);
+            exampleDrawable.draw(canvas);
         }
     }
 
@@ -309,37 +309,37 @@ public class CustomView extends View implements SensorEventListener {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    mCirclePosition.set(x, y);
+                    circlePosition.set(x, y);
                     invalidate();
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    mCirclePosition.set(x, y);
+                    circlePosition.set(x, y);
                     invalidate();
 
                     break;
                 case MotionEvent.ACTION_UP:
-                    mCirclePosition.set(x, y);
+                    circlePosition.set(x, y);
                     invalidate();
 
                     break;
             }
 
             // Circle 不出界
-            if (x - mRadius <= 0) {
+            if (x - radius <= 0) {
                 Log.d(TAG, "onTouchEvent x - <=0");
-                mCirclePosition.x = mRadius;
-            } else if (x + mRadius > contentWidth) {
-                mCirclePosition.x = contentWidth - mRadius;
+                circlePosition.x = radius;
+            } else if (x + radius > contentWidth) {
+                circlePosition.x = contentWidth - radius;
                 Log.d(TAG, "onTouchEvent x + > width");
             }
-            if (y - mRadius <= 0) {
-                mCirclePosition.y = mRadius;
+            if (y - radius <= 0) {
+                circlePosition.y = radius;
                 Log.d(TAG, "onTouchEvent y < 0");
-            } else if (y + mRadius > contentHeight) {
-                mCirclePosition.y = contentHeight - mRadius;
+            } else if (y + radius > contentHeight) {
+                circlePosition.y = contentHeight - radius;
                 Log.d(TAG, "onTouchEvent y > height");
             }
-            Log.d(TAG, "x,y" + mCirclePosition.x + mCirclePosition.y);
+            Log.d(TAG, "x,y" + circlePosition.x + circlePosition.y);
         }
         return true;
     }
@@ -358,11 +358,11 @@ public class CustomView extends View implements SensorEventListener {
             float ax = values[0];
             float ay = values[1];
 
-            PointF p = mCirclePosition;
+            PointF p = circlePosition;
             p.x = p.x - ax * 3;
             p.y = p.y + ay * 3;
 
-            setmCirclePosition(p);
+            setCirclePosition(p);
 
         }
 
@@ -382,7 +382,7 @@ public class CustomView extends View implements SensorEventListener {
      */
     @SuppressWarnings("unused")
     public String getExampleString() {
-        return mHintString;
+        return hintString;
     }
 
     /**
@@ -393,7 +393,7 @@ public class CustomView extends View implements SensorEventListener {
      */
     @SuppressWarnings("unused")
     public void setExampleString(String exampleString) {
-        mHintString = exampleString;
+        hintString = exampleString;
         invalidateTextPaintAndMeasurements();
     }
 
@@ -404,7 +404,7 @@ public class CustomView extends View implements SensorEventListener {
      */
     @SuppressWarnings("unused")
     public int getExampleColor() {
-        return mExampleColor;
+        return exampleColor;
     }
 
     /**
@@ -415,7 +415,7 @@ public class CustomView extends View implements SensorEventListener {
      */
     @SuppressWarnings("unused")
     public void setExampleColor(int exampleColor) {
-        mExampleColor = exampleColor;
+        this.exampleColor = exampleColor;
         invalidateTextPaintAndMeasurements();
     }
 
@@ -426,7 +426,7 @@ public class CustomView extends View implements SensorEventListener {
      */
     @SuppressWarnings("unused")
     public float getExampleDimension() {
-        return mExampleDimension;
+        return exampleDimension;
     }
 
     /**
@@ -437,7 +437,7 @@ public class CustomView extends View implements SensorEventListener {
      */
     @SuppressWarnings("unused")
     public void setExampleDimension(float exampleDimension) {
-        mExampleDimension = exampleDimension;
+        this.exampleDimension = exampleDimension;
         invalidateTextPaintAndMeasurements();
     }
 
@@ -448,7 +448,7 @@ public class CustomView extends View implements SensorEventListener {
      */
     @SuppressWarnings("unused")
     public Drawable getExampleDrawable() {
-        return mExampleDrawable;
+        return exampleDrawable;
     }
 
     /**
@@ -459,7 +459,7 @@ public class CustomView extends View implements SensorEventListener {
      */
     @SuppressWarnings("unused")
     public void setExampleDrawable(Drawable exampleDrawable) {
-        mExampleDrawable = exampleDrawable;
+        this.exampleDrawable = exampleDrawable;
     }
 
     /**
@@ -468,18 +468,18 @@ public class CustomView extends View implements SensorEventListener {
      * @return 颜色
      */
     @SuppressWarnings("unused")
-    public int getmCircleColor() {
-        return mCircleColor;
+    public int getCircleColor() {
+        return circleColor;
     }
 
     /**
      * 设置圆的颜色
      *
-     * @param mCircleColor 颜色
+     * @param circleColor 颜色
      */
     @SuppressWarnings("unused")
-    public void setmCircleColor(int mCircleColor) {
-        this.mCircleColor = mCircleColor;
+    public void setCircleColor(int circleColor) {
+        this.circleColor = circleColor;
         invalidate();
     }
 
@@ -489,37 +489,33 @@ public class CustomView extends View implements SensorEventListener {
      * @return 位置
      */
     @SuppressWarnings("unused")
-    public PointF getmCirclePosition() {
-        return mCirclePosition;
+    public PointF getCirclePosition() {
+        return circlePosition;
     }
 
     /**
      * 设置圆的位置
      *
-     * @param mCirclePosition 位置
+     * @param circlePosition 位置
      */
     @SuppressWarnings("unused")
-    public void setmCirclePosition(PointF mCirclePosition) {
+    public void setCirclePosition(PointF circlePosition) {
 
-        float x = mCirclePosition.x;
-        float y = mCirclePosition.y;
-        if (x - mRadius <= 0) {
-            Log.d(TAG, "setmCirclePosition x - <=0");
-            mCirclePosition.x = mRadius;
-        } else if (x + mRadius > contentWidth) {
-            mCirclePosition.x = contentWidth - mRadius;
-            Log.d(TAG, "setmCirclePosition x + > width");
+        float x = circlePosition.x;
+        float y = circlePosition.y;
+        if (x - radius <= 0) {
+            circlePosition.x = radius;
+        } else if (x + radius > contentWidth) {
+            circlePosition.x = contentWidth - radius;
         }
-        if (y - mRadius <= 0) {
-            mCirclePosition.y = mRadius;
-            Log.d(TAG, "setmCirclePosition y < 0");
-        } else if (y + mRadius > contentHeight) {
-            mCirclePosition.y = contentHeight - mRadius;
-            Log.d(TAG, "setmCirclePosition y > height");
+        if (y - radius <= 0) {
+            circlePosition.y = radius;
+        } else if (y + radius > contentHeight) {
+            circlePosition.y = contentHeight - radius;
         }
-        if (x > mRadius && x < contentWidth - mRadius &&
-                y > mRadius && y < contentHeight - mRadius) {
-            this.mCirclePosition = mCirclePosition;
+        if (x > radius && x < contentWidth - radius &&
+                y > radius && y < contentHeight - radius) {
+            this.circlePosition = circlePosition;
         }
         invalidate();
     }
@@ -530,18 +526,18 @@ public class CustomView extends View implements SensorEventListener {
      * @return 半径
      */
     @SuppressWarnings("unused")
-    public float getmRadius() {
-        return mRadius;
+    public float getRadius() {
+        return radius;
     }
 
     /**
      * 设置圆的半径
      *
-     * @param mRadius 半径
+     * @param radius 半径
      */
     @SuppressWarnings("unused")
-    public void setmRadius(float mRadius) {
-        this.mRadius = mRadius;
+    public void setRadius(float radius) {
+        this.radius = radius;
         invalidate();
     }
 

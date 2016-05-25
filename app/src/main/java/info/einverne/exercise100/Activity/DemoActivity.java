@@ -1,4 +1,4 @@
-package info.einverne.exercise100.Activity;
+package info.einverne.exercise100.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -56,9 +55,14 @@ public class DemoActivity extends AppCompatActivity {
             Map<String, String> item = getData().get(position);
             String ac = item.get("activity");
 
+            Intent intent;
             switch (ac){
+                case "MainActivity":
+                    intent = new Intent(DemoActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    break;
                 case "DataActivity":
-                    Intent intent = new Intent(DemoActivity.this, DataActivity.class);
+                    intent = new Intent(DemoActivity.this, DataActivity.class);
                     startActivity(intent);
                     break;
                 case "TextViewTestActivity":
@@ -80,6 +84,10 @@ public class DemoActivity extends AppCompatActivity {
     private List<Map<String, String>> getData() {
         List<Map<String, String>> data = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
+        map.put("name", "Gravity Circle");
+        map.put("activity", "MainActivity");
+        data.add(map);
+        map = new HashMap<>();
         map.put("name", "Saving Files");
         map.put("activity", "DataActivity");
         data.add(map);

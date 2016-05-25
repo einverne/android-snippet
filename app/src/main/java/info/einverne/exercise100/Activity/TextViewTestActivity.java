@@ -1,4 +1,4 @@
-package info.einverne.exercise100.Activity;
+package info.einverne.exercise100.activity;
 
 import android.graphics.Color;
 import android.graphics.Typeface;

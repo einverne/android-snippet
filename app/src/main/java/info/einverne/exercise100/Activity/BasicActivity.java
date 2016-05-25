@@ -1,4 +1,4 @@
-package info.einverne.exercise100.Activity;
+package info.einverne.exercise100.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

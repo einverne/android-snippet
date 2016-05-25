@@ -1,4 +1,4 @@
-package info.einverne.exercise100.Activity;
+package info.einverne.exercise100.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -84,21 +84,21 @@ public class MainActivity extends AppCompatActivity {
         // change color
         switch (color_of_circle) {
             case "1":
-                cv.setmCircleColor(Color.WHITE);
+                cv.setCircleColor(Color.WHITE);
                 break;
             case "2":
-                cv.setmCircleColor(Color.RED);
+                cv.setCircleColor(Color.RED);
                 break;
             case "3":
-                cv.setmCircleColor(Color.BLUE);
+                cv.setCircleColor(Color.BLUE);
                 break;
             case "4":
-                cv.setmCircleColor(Color.YELLOW);
+                cv.setCircleColor(Color.YELLOW);
                 break;
             default:
-                cv.setmCircleColor(Color.WHITE);
+                cv.setCircleColor(Color.WHITE);
         }
-        cv.setmRadius(size_of_circle);
+        cv.setRadius(size_of_circle);
 
         cv.setOperation(operation);
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 //        float y = pos_sharedPreferences.getFloat("y", 250);
 //        Log.d(TAG, "x value " + x + " "+ y);
 //
-//        cv.setmCirclePosition(new PointF(x,y));
+//        cv.setCirclePosition(new PointF(x,y));
 
     }
 
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onStop");
 
 
-//        PointF position = cv.getmCirclePosition();
+//        PointF position = cv.getCirclePosition();
 //        Log.d(TAG,"Get from View "+ position.x + " "+position.y);
 
 

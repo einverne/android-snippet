@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="info.einverne.exercise100">
 
     <uses-permission
@@ -11,20 +12,16 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:fullBackupContent="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".Activity.MainActivity"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask" />
         <activity
-            android:name=".Activity.SettingsActivity"
+            android:name=".activity.SettingsActivity"
             android:label="Preference" />
-        <activity android:name=".Activity.WidgetSettingsActivity">
+        <activity android:name=".activity.WidgetSettingsActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -45,17 +42,22 @@
         <service
             android:name=".UpdateWidgetService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="info.einverne.exercise100.UpdateWidgetService" />
             </intent-filter>
         </service>
 
-        <activity android:name=".Activity.DataActivity" />
-        <activity android:name=".Activity.TextViewTestActivity" />
-        <activity android:name=".Activity.DemoActivity" />
-        <activity android:name=".Activity.BasicActivity" />
-        <activity android:name=".Activity.ChangeThemeActivity"></activity>
+        <activity android:name=".activity.DataActivity" />
+        <activity android:name=".activity.TextViewTestActivity" />
+        <activity android:name=".activity.DemoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.BasicActivity" />
     </application>
 
 </manifest>
