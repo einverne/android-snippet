@@ -7,14 +7,4 @@
         android:title="@string/settings"
         app:showAsAction="collapseActionView" />
 
-    <item
-        android:id="@+id/data_activity"
-        android:title="@string/settings_data_activity"
-        app:showAsAction="collapseActionView" />
-
-
-    <item
-        android:id="@+id/demo_activity"
-        android:title="@string/demo_activity"
-        app:showAsAction="collapseActionView" />
 </menu>

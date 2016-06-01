@@ -72,9 +72,15 @@ public class DemoActivity extends AppCompatActivity {
                 case "BasicActivity":
                     intent = new Intent(DemoActivity.this, BasicActivity.class);
                     startActivity(intent);
+                    break;
                 case "ChangeThemeActivity":
                     intent = new Intent(DemoActivity.this, ChangeThemeActivity.class);
                     startActivity(intent);
+                    break;
+                case "PermissionActivity":
+                    intent = new Intent(DemoActivity.this, PermissionActivity.class);
+                    startActivity(intent);
+                    break;
                 default:
                     break;
             }
@@ -87,22 +93,31 @@ public class DemoActivity extends AppCompatActivity {
         map.put("name", "Gravity Circle");
         map.put("activity", "MainActivity");
         data.add(map);
+
         map = new HashMap<>();
         map.put("name", "Saving Files");
         map.put("activity", "DataActivity");
         data.add(map);
+
         map = new HashMap<>();
         map.put("name", "TextView Test");
         map.put("activity", "TextViewTestActivity");
         data.add(map);
+
         map = new HashMap<>();
         map.put("name", "Basic Control Test");
         map.put("activity", "BasicActivity");
         data.add(map);
+
         // 改变app主题
         map = new HashMap<>();
         map.put("name", "Change Theme");
         map.put("activity", "ChangeThemeActivity");
+        data.add(map);
+
+        map = new HashMap<>();
+        map.put("name", "Permission Test");
+        map.put("activity", "PermissionActivity");
         data.add(map);
 
         return data;

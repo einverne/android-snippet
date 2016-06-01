@@ -199,13 +199,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 return true;
-            case R.id.data_activity:
-                Intent intentData = new Intent(MainActivity.this, DataActivity.class);
-                startActivity(intentData);
-                return true;
-            case R.id.demo_activity:
-                Intent intentDemo = new Intent(MainActivity.this, DemoActivity.class);
-                startActivity(intentDemo);
             default:
                 return super.onOptionsItemSelected(item);
         }
