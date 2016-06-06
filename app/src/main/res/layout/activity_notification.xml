@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="info.einverne.exercise100.activity.NotificationActivity">
+
+    <Button
+        android:id="@+id/btn_noti_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Normal Notification" />
+
+    <Button
+        android:id="@+id/btn_noti_remote_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom View Notification" />
+
+    <Button
+        android:id="@+id/btn_noti_big_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Big picture Notification" />
+
+    <Button
+        android:id="@+id/btn_noti_big_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Big Text Notification" />
+
+</LinearLayout>

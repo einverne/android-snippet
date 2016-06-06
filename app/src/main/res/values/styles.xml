@@ -49,15 +49,27 @@
     </style>
 
     <!-- Base application themes. -->
-    <style name="ThemeApp.Green" parent="AppTheme.Base.Green"/>
-    <style name="ThemeApp.Green.Dark" parent="AppTheme.Base.Green.Dark"/>
-    <style name="ThemeApp.Purple" parent="AppTheme.Base.Purple"/>
-    <style name="ThemeApp.Purple.Dark" parent="AppTheme.Base.Purple.Dark"/>
+    <style name="ThemeApp.Green" parent="AppTheme.Base.Green" />
+
+    <style name="ThemeApp.Green.Dark" parent="AppTheme.Base.Green.Dark" />
+
+    <style name="ThemeApp.Purple" parent="AppTheme.Base.Purple" />
+
+    <style name="ThemeApp.Purple.Dark" parent="AppTheme.Base.Purple.Dark" />
 
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

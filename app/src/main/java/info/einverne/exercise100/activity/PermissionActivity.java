@@ -17,13 +17,6 @@ public class PermissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission);
 
-        btnNotification = (Button) findViewById(R.id.notification);
-        btnNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                Push.sendCustomNotification(getBaseContext(), intent);
-            }
-        });
     }
+
 }

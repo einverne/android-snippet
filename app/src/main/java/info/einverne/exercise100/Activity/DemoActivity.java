@@ -81,6 +81,10 @@ public class DemoActivity extends AppCompatActivity {
                     intent = new Intent(DemoActivity.this, PermissionActivity.class);
                     startActivity(intent);
                     break;
+                case "NotificationActivity":
+                    intent = new Intent(DemoActivity.this, NotificationActivity.class);
+                    startActivity(intent);
+                    break;
                 default:
                     break;
             }
@@ -118,6 +122,11 @@ public class DemoActivity extends AppCompatActivity {
         map = new HashMap<>();
         map.put("name", "Permission Test");
         map.put("activity", "PermissionActivity");
+        data.add(map);
+
+        map = new HashMap<>();
+        map.put("name", "Notification Test");
+        map.put("activity", "NotificationActivity");
         data.add(map);
 
         return data;
