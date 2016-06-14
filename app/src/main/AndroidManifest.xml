@@ -50,7 +50,8 @@
 
         <activity android:name=".activity.DataActivity" />
         <activity android:name=".activity.TextViewTestActivity" />
-        <activity android:name=".activity.DemoActivity">
+        <activity android:name=".activity.DemoActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
