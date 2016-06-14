@@ -10,92 +10,133 @@
     tools:context="info.einverne.exercise100.activity.BasicActivity">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView2" >
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Radio Button"
-                android:id="@+id/textView2" />
+                android:text="Radio Button" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
+
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Radio1"
                         android:id="@+id/radio1"
-                        android:onClick="onRadioButtonClicked"/>
-
-                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Radio2"
+                        android:onClick="onRadioButtonClicked"
+                        android:text="Radio1" />
+
+                    <RadioButton
                         android:id="@+id/radio2"
-                        android:onClick="onRadioButtonClicked" />
-
-                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Radio3"
+                        android:onClick="onRadioButtonClicked"
+                        android:text="Radio2" />
+
+                    <RadioButton
                         android:id="@+id/radio3"
-                        android:onClick="onRadioButtonClicked"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onRadioButtonClicked"
+                        android:text="Radio3" />
                 </RadioGroup>
 
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
-                android:id="@+id/textView3" />
+                android:text="CheckBox" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CheckBox1"
                     android:id="@+id/checkBox1"
-                    android:onClick="onCheckBoxClicked"/>
-
-                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CheckBox2"
+                    android:onClick="onCheckBoxClicked"
+                    android:text="CheckBox1" />
+
+                <CheckBox
                     android:id="@+id/checkBox2"
-                    android:onClick="onCheckBoxClicked"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onCheckBoxClicked"
+                    android:text="CheckBox2" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SeekBar"
-                android:id="@+id/textView4" />
+                android:text="SeekBar" />
 
-            <SeekBar
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/seekBar" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <SeekBar
+                        android:id="@+id/seekBar1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:max="100"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp" />
+
+                    <TextView
+                        android:id="@+id/tv_seekbar1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="100" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <SeekBar
+                    android:id="@+id/seekBarWithThumb"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:max="200"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:progress="50"
+                    android:thumb="@drawable/selector_seekbar_thumb" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
