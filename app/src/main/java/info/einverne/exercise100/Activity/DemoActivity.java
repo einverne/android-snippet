@@ -57,8 +57,8 @@ public class DemoActivity extends AppCompatActivity {
 
             Intent intent;
             switch (ac){
-                case "MainActivity":
-                    intent = new Intent(DemoActivity.this, MainActivity.class);
+                case "GravityCircleActivity":
+                    intent = new Intent(DemoActivity.this, GravityCircleActivity.class);
                     startActivity(intent);
                     break;
                 case "DataActivity":
@@ -99,7 +99,7 @@ public class DemoActivity extends AppCompatActivity {
         List<Map<String, String>> data = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
         map.put("name", "Gravity Circle");
-        map.put("activity", "MainActivity");
+        map.put("activity", "GravityCircleActivity");
         data.add(map);
 
         map = new HashMap<>();

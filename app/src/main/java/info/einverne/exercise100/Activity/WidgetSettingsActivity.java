@@ -89,7 +89,7 @@ public class WidgetSettingsActivity extends AppCompatActivity implements View.On
         }
 
         // set onclick imagebutton       imagebtn open app
-//        Intent intent = new Intent(this, MainActivity.class);
+//        Intent intent = new Intent(this, GravityCircleActivity.class);
 //        intent.setAction(MyAppWidget.ACTION_WIDGET_IMAGEBUTTON);
 //        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 //        intent.putExtra("click",1);

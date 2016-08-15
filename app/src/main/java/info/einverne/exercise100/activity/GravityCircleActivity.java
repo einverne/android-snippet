@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import info.einverne.exercise100.CustomView;
 import info.einverne.exercise100.R;
 
-public class MainActivity extends AppCompatActivity {
+public class GravityCircleActivity extends AppCompatActivity {
 
     public final static String TAG = "EV_TAG";
 
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings_id:
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(GravityCircleActivity.this, SettingsActivity.class);
                 startActivity(intent);
 
                 return true;

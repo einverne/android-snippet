@@ -19,7 +19,7 @@ import android.widget.Toast;
 import java.util.HashSet;
 import java.util.Random;
 
-import info.einverne.exercise100.activity.MainActivity;
+import info.einverne.exercise100.activity.GravityCircleActivity;
 import info.einverne.exercise100.activity.WidgetSettingsActivity;
 
 /**
@@ -81,7 +81,7 @@ public class MyAppWidget extends AppWidgetProvider {
         Log.d(TAG, "updateImageBtn");
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
         // set onclick imagebutton       imagebtn open app
-//        Intent intent = new Intent(context, MainActivity.class);
+//        Intent intent = new Intent(context, GravityCircleActivity.class);
 //        intent.setAction(MyAppWidget.ACTION_WIDGET_IMAGEBUTTON);
 //        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 //        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -228,14 +228,14 @@ public class MyAppWidget extends AppWidgetProvider {
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
 
-//            Intent clickedIntent = new Intent(context, MainActivity.class);
+//            Intent clickedIntent = new Intent(context, GravityCircleActivity.class);
 //            clickedIntent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT|
 //                Intent.FLAG_ACTIVITY_CLEAR_TOP|
 //                Intent.FLAG_ACTIVITY_NEW_TASK);
 //            clickedIntent.setData(Uri.parse(clickedIntent.toUri(Intent.URI_INTENT_SCHEME)));
 //            PendingIntent clickedPI = PendingIntent.getActivity(context, 0, clickedIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 //            views.setOnClickPendingIntent(R.id.widget_imageButton, clickedPI);
-            Intent intentActivity = new Intent(context, MainActivity.class);
+            Intent intentActivity = new Intent(context, GravityCircleActivity.class);
             intentActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intentActivity);
 
