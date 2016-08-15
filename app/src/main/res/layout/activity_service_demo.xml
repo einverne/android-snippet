@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_service_demo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="info.einverne.exercise100.activity.ServiceDemoActivity">
+
+    <Button
+        android:text="Start Service"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/btn_start_service"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_service_demo"
+        app:layout_constraintTop_toTopOf="@+id/activity_service_demo" />
+
+    <Button
+        android:text="Stop Service"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/btn_stop_service"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_service_demo"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start_service" />
+</android.support.constraint.ConstraintLayout>

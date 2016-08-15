@@ -89,6 +89,10 @@ public class DemoActivity extends AppCompatActivity {
                     intent = new Intent(DemoActivity.this, AnimationActivity.class);
                     startActivity(intent);
                     break;
+                case "Service":
+                    intent = new Intent(DemoActivity.this, ServiceDemoActivity.class);
+                    startActivity(intent);
+                    break;
                 default:
                     break;
             }
@@ -136,6 +140,11 @@ public class DemoActivity extends AppCompatActivity {
         map = new HashMap<>();
         map.put("name", "AnimationActivity");
         map.put("activity", "AnimationActivity");
+        data.add(map);
+
+        map = new HashMap<>();
+        map.put("name", "Service");
+        map.put("activity", "Service");
         data.add(map);
 
         return data;

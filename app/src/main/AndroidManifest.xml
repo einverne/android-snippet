@@ -65,7 +65,12 @@
         <activity
             android:name=".activity.NotificationActivity"
             android:label="@string/title_activity_notification" />
-        <activity android:name=".activity.AnimationActivity"></activity>
+        <activity android:name=".activity.AnimationActivity" />
+        <activity android:name=".activity.ServiceDemoActivity" />
+
+        <service
+            android:name=".DemoIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
