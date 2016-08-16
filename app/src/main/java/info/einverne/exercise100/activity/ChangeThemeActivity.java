@@ -1,7 +1,7 @@
 package info.einverne.exercise100.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import info.einverne.exercise100.R;

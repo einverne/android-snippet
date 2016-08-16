@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
 
+import info.einverne.exercise100.activity.ServiceDemoActivity;
+
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
@@ -12,14 +14,10 @@ import android.content.Context;
  * helper methods.
  */
 public class DemoIntentService extends IntentService {
-    // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_FOO = "info.einverne.exercise100.action.FOO";
-    private static final String ACTION_BAZ = "info.einverne.exercise100.action.BAZ";
+    public static final String ACTION_DOWNLOAD = "info.einverne.exercise100.action.DOWNLOAD_IMAGE";
 
-    // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "info.einverne.exercise100.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "info.einverne.exercise100.extra.PARAM2";
+    public static final String EXTRA_DOWNLOAD_RESULT = "info.einverne.exercise100.extra.IMG_PATH";
 
     public DemoIntentService() {
         super("DemoIntentService");
@@ -31,27 +29,10 @@ public class DemoIntentService extends IntentService {
      *
      * @see IntentService
      */
-    // TODO: Customize helper method
-    public static void startActionFoo(Context context, String param1, String param2) {
+    public static void startDownload(Context context, String path1) {
         Intent intent = new Intent(context, DemoIntentService.class);
-        intent.setAction(ACTION_FOO);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
-
-    /**
-     * Starts this service to perform action Baz with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionBaz(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, DemoIntentService.class);
-        intent.setAction(ACTION_BAZ);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
+        intent.setAction(ACTION_DOWNLOAD);
+        intent.putExtra(EXTRA_DOWNLOAD_RESULT, path1);
         context.startService(intent);
     }
 
@@ -59,14 +40,9 @@ public class DemoIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
-            if (ACTION_FOO.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionFoo(param1, param2);
-            } else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
+            if (ACTION_DOWNLOAD.equals(action)) {
+                final String downloadPath = intent.getStringExtra(EXTRA_DOWNLOAD_RESULT);
+                handleActionDownload(downloadPath);
             }
         }
     }
@@ -75,17 +51,16 @@ public class DemoIntentService extends IntentService {
      * Handle action Foo in the provided background thread with the provided
      * parameters.
      */
-    private void handleActionFoo(String param1, String param2) {
-        // TODO: Handle action Foo
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    private void handleActionDownload(String downloadpath) {
+        try {
+            Thread.sleep(2000);
 
-    /**
-     * Handle action Baz in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
+            Intent intent = new Intent(ServiceDemoActivity.DOWNLOAD_RESULT);
+            intent.putExtra(EXTRA_DOWNLOAD_RESULT, downloadpath + " downloadResult");
+            sendBroadcast(intent);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
