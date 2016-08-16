@@ -1,9 +1,11 @@
-package info.einverne.exercise100;
+package info.einverne.exercise100.service;
 
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+
+import info.einverne.exercise100.MyAppWidget;
 
 public class UpdateWidgetService extends Service {
 

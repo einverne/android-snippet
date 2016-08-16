@@ -1,4 +1,4 @@
-package info.einverne.exercise100;
+package info.einverne.exercise100.service;
 
 import android.app.IntentService;
 import android.content.Intent;

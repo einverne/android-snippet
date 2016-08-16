@@ -21,6 +21,7 @@ import java.util.Random;
 
 import info.einverne.exercise100.activity.GravityCircleActivity;
 import info.einverne.exercise100.activity.WidgetSettingsActivity;
+import info.einverne.exercise100.service.UpdateWidgetService;
 
 /**
  * Implementation of App Widget functionality.

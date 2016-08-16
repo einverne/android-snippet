@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import info.einverne.exercise100.DemoIntentService;
+import info.einverne.exercise100.service.DemoIntentService;
 import info.einverne.exercise100.R;
 
 public class ServiceDemoActivity extends AppCompatActivity {

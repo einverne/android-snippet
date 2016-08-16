@@ -41,7 +41,7 @@
         </receiver>
 
         <service
-            android:name=".UpdateWidgetService"
+            android:name=".service.UpdateWidgetService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -70,7 +70,7 @@
         <activity android:name=".activity.ServiceDemoActivity" />
 
         <service
-            android:name=".DemoIntentService"
+            android:name=".service.DemoIntentService"
             android:exported="false"></service>
     </application>
 
