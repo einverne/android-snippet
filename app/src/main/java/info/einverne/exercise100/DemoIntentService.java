@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.Context;
 
 import info.einverne.exercise100.activity.ServiceDemoActivity;
+import timber.log.Timber;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -37,7 +38,26 @@ public class DemoIntentService extends IntentService {
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        Timber.d("Service onCreate");
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Timber.d("Service onStartCommand");
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Timber.d("Service onDestroy");
+    }
+
+    @Override
     protected void onHandleIntent(Intent intent) {
+        Timber.d("onHandleIntent");
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_DOWNLOAD.equals(action)) {
