@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import info.einverne.exercise100.CustomView;
+import info.einverne.exercise100.view.CustomView;
 import info.einverne.exercise100.R;
 
 public class GravityCircleActivity extends AppCompatActivity {

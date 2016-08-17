@@ -15,7 +15,7 @@ import com.pavelsikun.seekbarpreference.SeekBarPreference;
 
 import java.util.Objects;
 
-import info.einverne.exercise100.CustomView;
+import info.einverne.exercise100.view.CustomView;
 import info.einverne.exercise100.R;
 
 import static android.view.View.generateViewId;

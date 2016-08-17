@@ -1,4 +1,4 @@
-package info.einverne.exercise100;
+package info.einverne.exercise100.view;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,6 +19,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import info.einverne.exercise100.R;
 
 /**
  * view to draw circle

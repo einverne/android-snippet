@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <info.einverne.exercise100.CustomView
+    <info.einverne.exercise100.view.CustomView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ccc"
