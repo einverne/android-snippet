@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,7 @@ import info.einverne.exercise100.R;
 public class ServiceDemoActivity extends AppCompatActivity {
     public static final String DOWNLOAD_RESULT = "info.einverne.exercise100.DOWNLOAD_RESULT";
     private Button btn_start_service;
-    private Button btn_stop_service;
+    private Button btn_create_alarm;
 
     private BroadcastReceiver downloadReceiver = new BroadcastReceiver() {
         @Override
@@ -45,7 +46,26 @@ public class ServiceDemoActivity extends AppCompatActivity {
             }
         });
 
+        btn_create_alarm = (Button) findViewById(R.id.btn_create_alarm);
+        btn_create_alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "Create Alarm";
+                createAlarm(message, 10, 0);
+            }
+        });
+
         registerReceiver();
+    }
+
+    private void createAlarm(String message, int hour, int minute) {
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                .putExtra(AlarmClock.EXTRA_MESSAGE, message)
+                .putExtra(AlarmClock.EXTRA_HOUR, hour)
+                .putExtra(AlarmClock.EXTRA_MINUTES, minute);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     private int i = 0;
