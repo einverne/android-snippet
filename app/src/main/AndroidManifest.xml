@@ -72,7 +72,9 @@
 
         <service
             android:name=".service.DemoIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".activity.HeadsUpActivity"></activity>
     </application>
 
 </manifest>
