@@ -17,10 +17,8 @@ public class ScreenFaceDetector implements SensorEventListener {
 
     private static final int DETAULT_ACCELERATION_THRESHOLD = 7;
 
-    private int accelerationThreshold = DETAULT_ACCELERATION_THRESHOLD;
-
-    private int screenOrientationThreshold = 60;
-    private int screenOrientationHighThreshold = 180 - screenOrientationThreshold;
+    private int screenOrientationUpThreshold = 60;
+    private int screenOrientationDownThreshold = 180 - screenOrientationUpThreshold;
 
     /**
      * Listener for screen face
@@ -112,14 +110,14 @@ public class ScreenFaceDetector implements SensorEventListener {
 
                 roll = (float) Math.toDegrees(orientation[2]);
                 final double magnitudeSquared = roll * roll;
-                if (magnitudeSquared < screenOrientationThreshold * screenOrientationThreshold) {
+                if (magnitudeSquared < screenOrientationUpThreshold * screenOrientationUpThreshold) {
                     lastScreenFaceOrientation = ScreenFaceOrientation.FaceUp;
-                } else if (magnitudeSquared > screenOrientationHighThreshold * screenOrientationHighThreshold) {
+                } else if (magnitudeSquared > screenOrientationDownThreshold * screenOrientationDownThreshold) {
                     lastScreenFaceOrientation = ScreenFaceOrientation.FaceDown;
                 } else if (magnitudeSquared > 80 * 80 && magnitudeSquared < 100 * 100) {
                     screenFaceOrientation = ScreenFaceOrientation.FaceVertical;
                 }
-                return magnitudeSquared > screenOrientationHighThreshold * screenOrientationHighThreshold || magnitudeSquared < screenOrientationThreshold * screenOrientationThreshold;
+                return magnitudeSquared > screenOrientationDownThreshold * screenOrientationDownThreshold || magnitudeSquared < screenOrientationUpThreshold * screenOrientationUpThreshold;
             }
         }
         return false;
@@ -163,9 +161,6 @@ public class ScreenFaceDetector implements SensorEventListener {
                 * If the pitch is positive, you're in reverse portrait, and if the pitch is negative you're in portrait.
                 *
                 * orientation -> azimut, pitch and roll
-                *
-                *
-                *
                 */
 
                 /*
@@ -307,7 +302,7 @@ public class ScreenFaceDetector implements SensorEventListener {
          * Adds a sample.
          *
          * @param timestamp    in nanoseconds of sample
-         * @param accelerating true if > {@link #accelerationThreshold}.
+         * @param accelerating true if up or down
          */
         void add(long timestamp, boolean accelerating) {
             // Purge samples that proceed window.
@@ -403,7 +398,7 @@ public class ScreenFaceDetector implements SensorEventListener {
         long timestamp;
 
         /**
-         * If acceleration > {@link #accelerationThreshold}.
+         * If up or down
          */
         boolean accelerating;
 

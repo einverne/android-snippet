@@ -19,6 +19,14 @@ public class HeadsUpActivity extends AppCompatActivity implements
     private ScreenFaceDetector screenFaceDetector;
     private SensorManager sensorManager;
 
+    private String[] texts = {
+            "Intent",
+            "Activity",
+            "Broadcast",
+            "Service"
+    };
+    private int index = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,13 +87,18 @@ public class HeadsUpActivity extends AppCompatActivity implements
     @Override
     public void FaceUp() {
         Timber.d("FaceUp");
-        showText.setText("FaceUp");
+        index ++;
     }
 
     @Override
     public void FaceDown() {
-        Timber.d("Face Down");
-        showText.setText("FaceDown");
+        Timber.d("Face Down Next");
+
+        if (index < showText.length()) {
+            showText.setText(texts[index]);
+            index ++;
+        }
+
     }
 
 }
