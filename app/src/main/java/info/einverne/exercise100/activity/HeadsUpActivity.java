@@ -1,10 +1,9 @@
 package info.einverne.exercise100.activity;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 import android.widget.TextView;
 
 import info.einverne.exercise100.R;
@@ -15,7 +14,7 @@ import timber.log.Timber;
 public class HeadsUpActivity extends AppCompatActivity implements
         ShakeDetector.Listener, ScreenFaceDetector.Listener {
 
-    private TextView showFaceFlip;
+    private TextView showText;
     private ShakeDetector shakeDetector;
     private ScreenFaceDetector screenFaceDetector;
     private SensorManager sensorManager;
@@ -25,7 +24,7 @@ public class HeadsUpActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heads_up);
 
-        showFaceFlip = (TextView) findViewById(R.id.showFaceFlip);
+        showText = (TextView) findViewById(R.id.showFaceFlip);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         initSensor();
@@ -80,11 +79,13 @@ public class HeadsUpActivity extends AppCompatActivity implements
     @Override
     public void FaceUp() {
         Timber.d("FaceUp");
+        showText.setText("FaceUp");
     }
 
     @Override
     public void FaceDown() {
         Timber.d("Face Down");
+        showText.setText("FaceDown");
     }
 
 }

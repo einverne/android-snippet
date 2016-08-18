@@ -74,7 +74,10 @@
             android:name=".service.DemoIntentService"
             android:exported="false" />
 
-        <activity android:name=".activity.HeadsUpActivity"></activity>
+        <activity
+            android:name=".activity.HeadsUpActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
