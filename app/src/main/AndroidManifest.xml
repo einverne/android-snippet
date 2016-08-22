@@ -78,6 +78,7 @@
             android:name=".activity.HeadsUpActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.RecyclerViewActivity"></activity>
     </application>
 
 </manifest>

@@ -23,5 +23,11 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+    <string-array name="titles">
+        <item>Title1</item>
+        <item>Title2</item>
+        <item>Title3</item>
+        <item>Title4</item>
+    </string-array>
 
 </resources>
