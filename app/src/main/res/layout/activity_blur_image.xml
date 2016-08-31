@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_blur_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="info.einverne.exercise100.activity.BlurImageActivity">
+
+    <ImageView
+        android:id="@+id/iv_origin"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="58dp"
+        android:src="@drawable/blur_test"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_blur_image"
+        app:layout_constraintRight_toRightOf="@+id/activity_blur_image"
+        app:layout_constraintTop_toTopOf="@+id/activity_blur_image" />
+
+    <Button
+        android:id="@+id/btn_blur"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Blur"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_origin"
+        app:layout_constraintRight_toRightOf="@+id/iv_origin" />
+
+    <ImageView
+        android:id="@+id/iv_blur"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/blur_test"
+        app:layout_constraintBottom_toTopOf="@+id/btn_blur"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_blur_image"
+        app:layout_constraintRight_toRightOf="@+id/activity_blur_image"
+        app:layout_constraintTop_toBottomOf="@+id/iv_origin"
+        app:layout_constraintVertical_bias="0.0" />
+</android.support.constraint.ConstraintLayout>
