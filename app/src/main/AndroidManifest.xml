@@ -80,7 +80,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.RecyclerViewActivity" />
         <activity android:name=".activity.BlurImageActivity" />
-        <activity android:name=".activity.RoundImageViewActivity"></activity>
+        <activity android:name=".activity.RoundImageViewActivity" />
+        <activity android:name=".activity.ImageViewTestActivity"></activity>
     </application>
 
 </manifest>
