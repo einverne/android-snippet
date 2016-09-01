@@ -79,7 +79,8 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.RecyclerViewActivity" />
-        <activity android:name=".activity.BlurImageActivity"></activity>
+        <activity android:name=".activity.BlurImageActivity" />
+        <activity android:name=".activity.RoundImageViewActivity"></activity>
     </application>
 
 </manifest>
