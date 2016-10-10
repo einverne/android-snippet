@@ -82,7 +82,9 @@
         <activity android:name=".activity.BlurImageActivity" />
         <activity android:name=".activity.RoundImageViewActivity" />
         <activity android:name=".activity.ImageViewTestActivity" />
-        <activity android:name=".activity.DialogTestActivity"></activity>
+        <activity android:name=".activity.DialogTestActivity" />
+        <activity android:name=".activity.SharedElementActivity" />
+        <activity android:name=".activity.DetailsActivity"></activity>
     </application>
 
 </manifest>
