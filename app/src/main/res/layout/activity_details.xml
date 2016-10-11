@@ -10,14 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="info.einverne.exercise100.activity.DetailsActivity">
 
-    <ImageView
-        android:id="@+id/ivProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/blur_test"
-        android:transitionName="profile" />
-
     <TextView
         android:id="@+id/tvDemo"
         android:layout_width="match_parent"
@@ -25,5 +17,14 @@
         android:text="This is a test demo"
         android:textSize="50sp"
         android:transitionName="tvDemo" />
+
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDemo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/blur_test"
+        android:transitionName="profile" />
 
 </RelativeLayout>
