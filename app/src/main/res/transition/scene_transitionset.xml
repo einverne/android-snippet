@@ -4,7 +4,6 @@
     android:duration="700"
     android:transitionOrdering="together"
     tools:targetApi="kitkat">
-    <changeBounds />
     <fade
         android:duration="700"
         android:fadingMode="fade_in">
@@ -12,4 +11,8 @@
             <target android:targetId="@id/base" />
         </targets>
     </fade>
+    <changeBounds />
+    <changeTransform />
+    <changeClipBounds />
+    <changeImageTransform />
 </transitionSet>

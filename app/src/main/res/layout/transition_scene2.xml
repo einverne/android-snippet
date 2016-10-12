@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/ivProfile"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         android:layout_below="@+id/tvDemo"
         android:scaleType="centerCrop"
         android:src="@drawable/blur_test"
