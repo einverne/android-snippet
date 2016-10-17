@@ -14,11 +14,11 @@
 
     <ImageView
         android:id="@+id/ivProfile"
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="400dp"
+        android:layout_height="600dp"
         android:layout_below="@+id/tvDemo"
         android:scaleType="centerCrop"
-        android:src="@drawable/blur_test"
+        android:src="@drawable/transition_test"
         android:transitionName="@string/profile_transition_name" />
 
 </RelativeLayout>
