@@ -1,14 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#cccccc">
 
-    <ImageView
-        android:id="@+id/ivMatrix"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@mipmap/ic_launcher"
-        android:scaleType="matrix" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/ivMatrix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="matrix"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:scaleType="center"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:scaleType="centerCrop"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:scaleType="centerInside"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:scaleType="fitStart"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:scaleType="fitCenter"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:scaleType="fitEnd"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:scaleType="fitXY"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:scaleType="matrix"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+
+        <info.einverne.exercise100.view.TopCropImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#454545"
+            android:src="@drawable/starbucks" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#66000000" />
+    </LinearLayout>
+
+</ScrollView>
