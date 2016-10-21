@@ -12,14 +12,12 @@
 
         <!-- specify enter and exit transitions -->
         <!-- options are: explode, slide, fade -->
-        <item name="android:windowEnterTransition">@transition/change_image_transform</item>
-        <item name="android:windowExitTransition">@transition/change_image_transform</item>
+        <item name="android:windowEnterTransition">@transition/transition_enter</item>
+        <item name="android:windowExitTransition">@transition/transition_enter</item>
 
         <!-- specify shared element transitions -->
-        <item name="android:windowSharedElementEnterTransition">
-            @transition/change_image_transform</item>
-        <item name="android:windowSharedElementExitTransition">
-            @transition/change_image_transform</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/transition_enter</item>
+        <item name="android:windowSharedElementExitTransition">@transition/transition_enter</item>
     </style>
 
     <style name="AppTheme.Base.Green" parent="AppTheme.Green">
@@ -86,4 +84,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AppTheme.TransitionDetail">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

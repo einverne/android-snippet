@@ -84,7 +84,10 @@
         <activity android:name=".activity.ImageViewTestActivity" />
         <activity android:name=".activity.DialogTestActivity" />
         <activity android:name=".activity.SharedElementActivity" />
-        <activity android:name=".activity.DetailsActivity"></activity>
+        <activity android:name=".activity.DetailsActivity" />
+        <activity
+            android:name=".transitions.TransitionTestActivity"
+            android:theme="@style/ThemeApp.Green" />
     </application>
 
 </manifest>
