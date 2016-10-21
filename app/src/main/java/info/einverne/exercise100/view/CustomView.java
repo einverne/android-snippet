@@ -31,7 +31,7 @@ import info.einverne.exercise100.R;
  * <p/>
  * SurfaceView can be drawn on by background theads but Views can't
  */
-public class CustomView extends View implements SensorEventListener {
+public class    CustomView extends View implements SensorEventListener {
 
     // List Preference key
     public final static String KEY_SIZE_OF_CIRCLE = "sizeOfCircle";
