@@ -88,6 +88,7 @@
         <activity
             android:name=".transitions.TransitionTestActivity"
             android:theme="@style/ThemeApp.Green" />
+        <activity android:name=".activity.RoundedImageViewActivity"></activity>
     </application>
 
 </manifest>
